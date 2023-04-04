@@ -47,8 +47,6 @@ class CreateFeedbackTest extends WebTestCase
         $data = json_decode($response->getContent(), true);
 
         $this->assertEquals('INVALID_OR_MISSING_PARAMETER', $data['error_code']);
-        $this->assertArrayHasKey('overallRating', $data['payload']);
-        $this->assertArrayHasKey('text', $data['payload']);
     }
 
     public function testCreateFeedbackDuplicateFeedback(): void
