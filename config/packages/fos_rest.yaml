@@ -1,0 +1,11 @@
+fos_rest:
+  format_listener:
+    rules:
+      - { path: ^/api, prefer_extension: true, fallback_format: json, priorities: [ json ] }
+  serializer:
+    serialize_null: true
+  view:
+    view_response_listener: 'force'
+    serialize_null: true
+    formats:
+      json: true
