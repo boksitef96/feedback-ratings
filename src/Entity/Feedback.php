@@ -18,9 +18,12 @@ class Feedback
     private int $id;
 
     #[ORM\Column(type: Types::TEXT, nullable: false)]
+    #[Assert\NotBlank]
+    #[Assert\NotNull]
     private string $text;
 
     #[ORM\Column]
+    #[Assert\NotNull]
     private int $overallRating;
 
     #[ORM\ManyToOne(inversedBy: 'feedbacks')]
@@ -108,6 +111,20 @@ class Feedback
             // set the owning side to null (unless already changed)
             if ($rating->getFeedback() === $this) {
                 $rating->setFeedback(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function removeAllRating(): self
+    {
+        foreach ($this->ratings as $rating) {
+            if ($this->ratings->removeElement($rating)) {
+                // set the owning side to null (unless already changed)
+                if ($rating->getFeedback() === $this) {
+                    $rating->setFeedback(null);
+                }
             }
         }
 

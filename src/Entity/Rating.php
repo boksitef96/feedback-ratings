@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\RatingRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: RatingRepository::class)]
 class Rating
@@ -14,6 +15,7 @@ class Rating
     private ?int $id = null;
 
     #[ORM\Column]
+    #[Assert\NotNull]
     private int $value;
 
     #[ORM\ManyToOne]
